@@ -1,0 +1,25 @@
+这是一个可以实现在页面端多语言的小Demo
+
+i18n 文件件下面有 en.js , zh_CN.js,i18n.js
+en.js : 包括了一些方法是用来拿 zh_CN, en.js 这类语言文件的。
+zh_CN.js: 具体的语言信息 对于中文
+en.js: 具体的语言信息 对于英文
+
+在pages 里面的每个页面的 JS 文件里需要引入
+    var i18n = require('../../i18n/i18n.js')
+    const _ = i18n._;
+    在onLoad function 里面需要加入
+            this.setData({
+                _t: i18n._t(), //翻译
+            });
+
+具体的语言信息绑定在wxml里面：
+ <text> {{_t['语言']}} </text>   其中语言是在en.js 和 zh_CN.js 里面声明的。
+
+NavigattionBarTitle:
+在onLoad function 里面用:
+    wx.setNavigationBarTitle({
+      title: _('语言')
+    });       其中语言是在en.js 和 zh_CN.js 里面声明的。
+
+
